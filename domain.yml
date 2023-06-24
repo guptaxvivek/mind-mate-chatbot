@@ -1,0 +1,349 @@
+version: "3.1"
+
+intents:
+- greet:
+    use_entities: true
+- levelone:
+    use_entities: true
+- leveltwo:
+    use_entities: true
+- levelthree:
+    use_entities: true
+- question:
+    use_entities: true
+- give_name:
+    use_entities: true
+- delight:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+- dontwannatalk:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+- excited:
+    use_entities: true
+- family_problems:
+    use_entities: true
+- work_problems:
+    use_entities: true
+- stress:
+    use_entities: true
+- boring:
+    use_entities: true
+- cant_focus:
+    use_entities: true
+- proj_tension:
+    use_entities: true
+- slight_improvement:
+    use_entities: true
+- feedback:
+    use_entities: true
+- going_crazy:
+    use_entities: true
+- positive_response:
+    use_entities: true
+- depressed:
+    use_entities: true
+- reason_depressed:
+    use_entities: true
+- UnMotivated:
+    use_entities: true
+- mood_idle:
+    use_entities: true
+- mood_solitude:
+    use_entities: true
+- gratitude:
+    use_entities: true
+- just_couldn't sleep:
+    use_entities: true
+- social_media:
+    use_entities: true
+- watching_movie:
+    use_entities: true
+- headache:
+    use_entities: true
+
+entities:
+- name
+- deny
+- good
+- sad
+- great
+- greet
+- excited
+- affirm
+- angry
+
+slots:
+  journal:
+    type: text
+    mappings:
+      - type: from_text
+        intent: feedback
+    initial_value: null
+    influence_conversation: true
+  name:
+    type: text
+    mappings:
+      - type: from_text
+        value: name
+        intent: give_name
+    initial_value: null
+    influence_conversation: true
+  user_delight:
+    type: text
+    mappings:
+      - type: from_text
+        intent: delight
+    initial_value: null
+    influence_conversation: true
+
+responses:
+
+  utter_answer:
+  - text: "I'm Good"
+    image: "https://tenor.com/1pn4.gif"
+
+
+  utter_bot_response:
+  - text: "Yes, I am a bot."
+
+  utter_greet:
+    - buttons:
+        - payload: /excited
+          title: Great!
+      text: Hey, I am ...
+
+  utter_ask_name:
+    - text: What should I call you?
+
+  utter_response_affirm:
+    - buttons:
+        - payload: /mood_great
+          title: Good
+        - payload: /mood_unhappy
+          title: Not so good
+      text: How are you?
+
+  utter_happy:
+    - text: Glad to hear that
+  utter_response_sad:
+    - buttons:
+        - payload: /affirm
+          title: Yes
+        - payload: /deny
+          title: No
+      text: would you like to tell me more about it?
+
+  utter_console_question:
+    - text: Tell me what makes you happy?
+  utter_bot_purpose:
+    - text: I am on a mission to help humanity.
+  utter_ask_delight:
+    - text: Tell me what makes you happy?
+
+  utter_ask_whats_bothering:
+    - buttons:
+        - payload: /family_problems
+          title: Family Issue
+        - payload: /work_problems
+          title: problems at school/uni/work
+        - payload: /stress
+          title: I am Stressed
+        - payload: /boring
+          title: Bored
+        - payload: /depressed
+          title: I am depressed
+      text: Whats bothering you?
+
+  utter_resolve_issue:
+    - text: Talk to them sometimes things get resolved when we talk.
+    - text: It happens but don't forget that they are your family.
+    - text: Always remember family comes first, they always have the best interests for you😊
+    - text: If you don't feel like they understand, just try to explain them in a calm voice. They'll surely understand.
+
+  utter_motivation:
+    - text: 'I see so you have problems with you work environment, here is something that can help you: https://i.pinimg.com/564x/ea/a3/c1/eaa3c1133b3481c4826a4061b39e1465.jpg'
+  utter_more:
+    - buttons:
+        - payload: /affirm
+          title: Yes
+        - payload: /deny
+          title: No
+      text: "Would you like to tell me more about it?"
+  utter_ask_level:
+    - text: "How much stressed do you feel ?"
+      buttons:
+        - title: "Little 😓"
+          payload: "/levelone"
+
+        - title: "Stressed enough 😣"
+          payload: "/leveltwo"
+
+        - title: "Much stressed 😖"
+          payload: "/levelthree"
+
+
+  utter_ask_levelone:
+    - text: "What is the little thing stressing you out?"
+
+  utter_ask_leveltwo:
+    - text: "Why are you so stressed?"
+
+  utter_ask_levelthree:
+    - text: "What matter is stressing you out?"
+
+  utter_help_levelone:
+    - text: 'Here is something for you: https://www.verywellmind.com/thmb/jgEl84HALNHc-c8dBPJ4LgdfUbQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/3145195-article-tips-to-reduce-stress-5a8c75818e1b6e0036533c47-922c3155e9c846eaa7447c75030b2c13.png'
+
+  utter_help_leveltwo:
+    - text: 'Okay, here is something to help you with : https://thumbs.dreamstime.com/z/how-to-deal-stress-guide-depression-reduce-instruction-making-exercise-yoga-sleep-deep-breath-help-stressful-state-130808779.jpg'
+
+  utter_help_levelthree:
+    - text: 'Here is something to help you with: https://youtu.be/wXiWaZHhX6s'
+
+  utter_suggest:
+    - text: Try meditating. All the unnecessary thoughts will go away.
+    - text: Check out your to-do list and complete the remaining tasks.
+    - text: 'Check this list out to find something helpful: https://i.pinimg.com/originals/27/63/76/2763763350974c9cb836d98980212d24.jpg'
+    - text: Try reading a book.
+
+  utter_ask_feedback:
+    - buttons:
+        - payload: /mood_great
+          title: Very good
+        - payload: /slight_improvement
+          title: Slightly better
+      text: Before you go I would like to know how are you feeling now?
+
+  utter_submit:
+    - text: Would you like to submit the feedback?
+
+  utter_positivity:
+    - text: It’s hard to find the motivation to focus on the positive when positivity seems like nothing more than wishful thinking.
+    - text: Maintaining positivity is a daily challenge that requires focus, attention, and practice.
+    - text: Once you replace negative thoughts with positive ones, you’ll start having positive results.
+    - text: Positive thinking is more than just a tagline. It changes the way we behave. And when you're positive, it not only makes you better, but it also makes those around you better.
+    - text: In every day, there are 1,440 minutes. That means we have 1,440 daily opportunities to make a positive impact.So go ahead dear. Make urself happy
+
+  utter_whydepressed:
+    - text: Ohh... What seems to be the problem?😕
+    - text: Why? What's depressing you?😕
+    - text: Ohh.. What happenend?
+    - text: What's bothering you?
+    - text: ohh.. Why do you feel so?
+    - text: Ohh.. What's making you feel like this?
+
+  utter_resolve_depression:
+    - text: 'You might find something helpful here: https://scontent.fdel52-1.fna.fbcdn.net/v/t1.6435-9/43734666_1158988120925057_2617627003196538880_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=6ytxuEcK1GMAX-ZdXYj&_nc_ht=scontent.fdel52-1.fna&oh=00_AfDhbOuekwVUrWT3AuDNnX9KtPTqPAL0NcbK8--fc69vOA&oe=643C0A07'
+
+  utter_goingcrazy:
+    - text: 'Check this out: https://www.thelivelovelaughfoundation.org/helpline you will find helpfull helplines here.'
+
+  utter_unmotivated:
+    - text: 'This video might help you: https://www.youtube.com/watch?v=wnHW6o8WMas'
+    - text: 'I have something here to motivate you: https://www.youtube.com/watch?v=C31rj-bZ7dA&t=277s'
+    - text: 'This may help you: https://youtu.be/mgmVOuLgFB0'
+    - text: "Here's something to motivate you: https://youtu.be/DNITe9snHqA"
+    - text: 'This video might help you: https://youtu.be/tWzakqerPUw'
+    - text: 'I have something here to motivate you: https://youtu.be/Tuw8hxrFBH8'
+
+  utter_goodbye:
+    - text: Bbye!!!!!
+
+  utter_cheer_up:
+    - text: 'Here is something to cheer you up: https://i.imgur.com/nGF1K8f.jpg'
+    - text: 'Here is something to cheer you up:  https://images.greetingsisland.com/images/cards/thoughts-and-feelings/cheer-up/previews/let-me-make-your-day.png'
+    - text: 'Here is something to cheer you up:  https://64.media.tumblr.com/tumblr_m0nanaR4Pn1qc4uvwo1_400.jpg'
+    - text: 'Here is something to cheer you up:  https://data.whicdn.com/images/59454719/original.jpg'
+
+  utter_focus:
+    - text: If you don't feel ike studying, just take a break.... you deserve one.😉 Go for a walk, listen to music, do things that make you forget about studies and then after a few hours just get back to your books.
+    - text: You need a break my friend....😁
+
+  utter_proj_tension:
+  - text: There's nothing that a person cannot do....you just need to find ways to complete your project.
+  - text: Everyone feels like they can't do something just because it seems hard but once you actually get into it, you understand it's pretty easy and you might find it interesting as well.
+
+  utter_headache:
+  - text: If you’ve been awake for more than 20 minutes, get out of bed and do a quiet, non-stimulating activity, such as reading a book. Keep the lights dim and avoid screens so as not to cue your body that it’s time to wake up.
+  - text: Sit or lie quietly and focus on your natural breathing and how your body feels in the moment. Allow thoughts and emotions to come and go without judgment, always returning to focus on breath and your body
+  - text: Breathing deeply and fully, involving not only the chest, but also the belly, lower back, and ribcage, can help relaxation. Close your eyes and take deep, slow breaths, making each breath even deeper than the last. Breathe in through your nose and out through your mouth
+
+  utter_solitude_quotes:
+  - text: Treat yourself with a solo date Order your favorite dishes...This really works!!!
+  - text: Go for an evening walk.. This will enhance the supply of oxygen to the lungs making you feel more energetic. This is a good option to kill your loneliness and feel more close to the nature. Once you make nature your dear friend, you will hardly be alone.
+  - text: Just shut down all your digital gadgets or just log off and have a good time outside or go on to the roof top enjoying the overview of the city with your coffee mug.
+  - text: Hey adopt a hobby, Buy a DSLR or start cooking or sketching or start learning musical instruments.
+  - text: Watching TED Talks can really inspire you and take your tiring soul out of loneliness. You can either go to TED Talk’s official website or can browse some on YouTube.
+  - text: If your boring soul needs a fresh start, just start working out. Join a nearby gym or physical training workshop or a Yoga class. It will help rejuvenate your mind and rush blood in the body due to workout and meditation will kill the boredom and most importantly your loneliness.
+
+  utter_did_that_help:
+  - text: Did that help you?
+
+  utter_sleep_remedy:
+  - text: 1. Make sure your bedroom is quiet, dark, and cool. 2. Stick to a regular sleep schedule 3.Turn off all screens at least an hour before bed 4. Avoid stimulating activity and stressful situations before bedtime 5. Avoid naps
+
+  utter_console:
+  - text: It's okay dear... This too shall pass
+  - text: I know this is tough... But every problem has a solution
+  - text: Relax dear... things will get better
+
+  utter_share_positivity:
+  - text: I've got something that I want to tell you today. Would you like to hear?
+
+  Did_you_sleep:
+  - buttons:
+    - payload: /affirm
+      title: Yes
+    - payload: /deny
+      title: No
+    text: Did you sleep well?
+
+  slept_well:
+  - text: That's great.....Sleep is very important for yourself. Try to get at-least 7-8 hours of sleep daily.
+
+  utter_y_not_sleep:
+  - buttons:
+    - payload: /social_media
+      title: Using my phone
+    - payload: /watching_movie
+      title: Watching Movie
+    - payload: /just_couldn't sleep
+      title: Just Couldn't sleep
+    - payload: /headache
+      title: Head was aching
+    text: why not?
+
+  utter_couldnt_sleep:
+  - text: Try deep breathing it helps
+
+  Using_phone:
+  - text: Sleep is more important than scrolling through instagram or facebook. Here is an article you need to read on why social media is harming people 'https://www.betterup.com/blog/social-media-and-mental-health'
+
+  utter_movie:
+  - text: Binge watching is fun!! I do it too you know but watching it in the day time is a better option then staying awake for a long time.
+
+  utter_coudnt_sleep:
+  - text: Try not looking at a screen 1 hour before you go to bed. While in bed take deep breaths and meditate. This might help you sleep quickly.
+
+  utter_welcome:
+  - text: Your welcome!!!!😁
+
+actions:
+  - action_receive_name
+  - action_receive_delight
+  - action_receive_feedback
+  - action_get_data
+  - Did_you_sleep
+  - Using_phone
+  - slept_well
